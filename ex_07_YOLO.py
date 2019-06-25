@@ -1,6 +1,7 @@
 # ----------------------------------------------------------------------------------------------------------------------
 import time
 import detector_YOLO3
+import tools_video
 # ----------------------------------------------------------------------------------------------------------------------
 def convert_to_Keras():
     D = detector_YOLO3.detector_YOLO3(None)
@@ -11,18 +12,24 @@ def convert_to_Keras():
     return
 # ----------------------------------------------------------------------------------------------------------------------
 def example_YOLO3_on_file():
-
-    D = detector_YOLO3.detector_YOLO3('data/ex70/yolov3-tiny.h5')
-    D.process_image('data/ex70/bike/Image.png', 'data/output/res.jpg')
+    model_in = './data/ex70/model_default_full.h5'
+    metadata_in = './data/ex70/metadata_default_full.txt'
+    filename_image = './data/ex16/LON/frame000777.jpg'
+    D = detector_YOLO3.detector_YOLO3(model_in,metadata_in)
+    D.process_file(filename_image, 'data/output/res_yolo.jpg')
 
     return
 # ----------------------------------------------------------------------------------------------------------------------
 def example_YOLO3_on_folder():
 
-    #D = detector_YOLO3.detector_YOLO3('data/ex70/yolov3-tiny.h5')
-    D = detector_YOLO3.detector_YOLO3('data/ex70/racoon_model.h5')
+    #model_in = './data/ex70/model_default.h5'
+    #metadata_in = './data/ex70/metadata_default.txt'
+    model_in = './data/ex70/model_default_full.h5'
+    metadata_in = './data/ex70/metadata_default_full.txt'
+
+    D = detector_YOLO3.detector_YOLO3(model_in, metadata_in, obj_threshold=0.50)
     start_time = time.time()
-    D.process_folder('data/ex70/octavia/', 'data/output/')
+    D.process_folder('./data/ex16/LON/', './data/output/')
     print('%s sec\n\n' % (time.time() - start_time))
     return
 # ----------------------------------------------------------------------------------------------------------------------
@@ -30,12 +37,15 @@ def do_train():
     file_annotations = 'data/ex70/annotation_racoons.txt'   #D.prepare_annotation_file('data/ex09-natural/','data/annotation.txt')
     path_out = 'data/output/'
     D = detector_YOLO3.detector_YOLO3('data/ex70/yolov3a-tiny.h5')
-    D.do_train_tiny_last_layer_only(file_annotations, path_out)
+    D.learn(file_annotations, path_out)
     return
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
     #do_train()
     example_YOLO3_on_file()
+    #example_YOLO3_on_folder()
+
+
 
 
 
