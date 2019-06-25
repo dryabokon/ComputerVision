@@ -4,7 +4,7 @@ import tools_image
 # ---------------------------------------------------------------------------------------------------------------------
 filename_in  = 'data/ex13/input.jpg'
 filename_out = 'data/output/out.jpg'
-faceCascade = cv2.CascadeClassifier('data/ex13/haarcascade_frontalface_default.xml')
+faceCascade = cv2.CascadeClassifier('data/ex13/haarcascade_eye.xml')
 USE_CAMERA = True
 
 
@@ -66,5 +66,5 @@ def demo_IP_Cam():
     return
 # ---------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
-    #demo_cascade()
-    demo_IP_Cam()
+    demo_cascade()
+    #demo_IP_Cam()

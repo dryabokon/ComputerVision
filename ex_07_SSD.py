@@ -1,49 +1,36 @@
 # ----------------------------------------------------------------------------------------------------------------------
-import keras
-from keras.applications.mobilenet_v2 import preprocess_input
-import numpy
-import tensorflow as tf
-import cv2
+import time
+import detector_SSD300
 # ----------------------------------------------------------------------------------------------------------------------
-filename_image = './data/ex70/bike/Image.png'
-filename_topology  = './data/ex71/ssdlite/frozen_inference_graph.pb'
+#filename_image = './data/ex16g/LON/frame000777.jpg'
+filename_image      = './data/ex70/bike/Image.png'
+filename_out        = './data/output/res_SSD_TF.jpg'
+default_model_in    = './data/ex71/MobileNetSSD300weights_voc_2007_class20.hdf5'
+default_metadata_in = './data/ex71/metadata_default.txt'
 # ----------------------------------------------------------------------------------------------------------------------
-def example_evaluate():
-    with tf.gfile.FastGFile(filename_topology, 'rb') as f:
-        graph_def = tf.GraphDef()
-        graph_def.ParseFromString(f.read())
+def example_SSD_on_file():
 
-    with tf.Session() as sess:
-        sess.graph.as_default()
-        tf.import_graph_def(graph_def, name='')
+    D = detector_SSD300.detector_SSD300(default_model_in, default_metadata_in)
+    D.process_file(filename_image, filename_out)
 
-        img = cv2.imread(filename_image)
-        rows = img.shape[0]
-        cols = img.shape[1]
-        inp = img[:, :, [2, 1, 0]]  # BGR2RGB
+    return
+# ----------------------------------------------------------------------------------------------------------------------
+def example_SSD_on_folder():
 
-        out = sess.run([sess.graph.get_tensor_by_name('num_detections:0'),
-                        sess.graph.get_tensor_by_name('detection_scores:0'),
-                        sess.graph.get_tensor_by_name('detection_boxes:0'),
-                        sess.graph.get_tensor_by_name('detection_classes:0')],
-                       feed_dict={'image_tensor:0': inp.reshape(1, inp.shape[0], inp.shape[1], 3)})
-
-        # Visualize detected bounding boxes.
-        num_detections = int(out[0][0])
-        for i in range(num_detections):
-            classId = int(out[3][0][i])
-            score = float(out[1][0][i])
-            bbox = [float(v) for v in out[2][0][i]]
-            if score > 0.3:
-                x = bbox[1] * cols
-                y = bbox[0] * rows
-                right = bbox[3] * cols
-                bottom = bbox[2] * rows
-                cv2.rectangle(img, (int(x), int(y)), (int(right), int(bottom)), (125, 255, 51), thickness=2)
-
-    cv2.imshow('TensorFlow MobileNet-SSD', img)
-    cv2.waitKey()
+    D = detector_SSD300.detector_SSD300(default_model_in, default_metadata_in, obj_threshold=0.50)
+    start_time = time.time()
+    D.process_folder('./data/ex16/LON/', './data/output/')
+    print('%s sec\n\n' % (time.time() - start_time))
     return
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
-    example_evaluate()
+    #do_train()
+    example_SSD_on_file()
+
+
+
+
+
+
+
+
