@@ -4,7 +4,8 @@ import CNN_Faster_TF_Hub
 def example_detection():
 
     #filename_in = 'data/ex-natural/dog/dog_0000.jpg'
-    filename_in = 'data/ex13/input.jpg'
+    #filename_in = 'data/ex13/input.jpg'
+    filename_in = './data/ex16b/frame002503.jpg'
     CNN = CNN_Faster_TF_Hub.CNN_Faster_TF()
     CNN.detect_object(filename_in)
     return
