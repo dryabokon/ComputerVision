@@ -14,7 +14,7 @@ import tools_ML
 import tools_image
 import tools_animation
 # ----------------------------------------------------------------------------------------------------------------------
-def plot_images_PCA(path_input,mask,resize_W,resize_H,grayscaled=True):
+def plot_images_PCA(path_input,mask,resize_W,resize_H,grayscaled=True,caption=''):
     patterns = numpy.sort(numpy.array([f.path[len(path_input):] for f in os.scandir(path_input) if f.is_dir()]))
 
     X,Y =[],[]
@@ -32,6 +32,7 @@ def plot_images_PCA(path_input,mask,resize_W,resize_H,grayscaled=True):
 
     fig = plt.figure(figsize=(12, 6))
     fig.subplots_adjust(hspace=0.01)
+    fig.canvas.set_window_title(caption)
 
     tools_IO.plot_2D_scores_multi_Y(plt.subplot(1, 2, 1), X_TSNE, Y, labels=patterns)
     tools_IO.plot_2D_scores_multi_Y(plt.subplot(1, 2, 2), X_PC, Y)
@@ -41,7 +42,7 @@ def plot_images_PCA(path_input,mask,resize_W,resize_H,grayscaled=True):
 
     return
 # ----------------------------------------------------------------------------------------------------------------------
-def plot_features_PCA(path_input):
+def plot_features_PCA(path_input,caption=''):
 
 
     patterns = fnmatch.filter(listdir(path_input),'*.txt')
@@ -57,6 +58,7 @@ def plot_features_PCA(path_input):
 
     fig = plt.figure(figsize=(12, 6))
     fig.subplots_adjust(hspace =0.01)
+    fig.canvas.set_window_title(caption)
 
     tools_IO.plot_2D_scores_multi_Y(plt.subplot(1,2,1),X_TSNE, Y, labels=patterns)
     tools_IO.plot_2D_scores_multi_Y(plt.subplot(1,2,2),X_PC,   Y)
@@ -115,25 +117,20 @@ def average_images_from_subfolders(path_input,path_output,mask,resize_W=8, resiz
 
     return
 # ----------------------------------------------------------------------------------------------------------------------
-def example_natural():
-    path_input_features = 'data/features-mnist/CNN_AlexNet_TF/'
-    path_input_images,mask = 'data/ex09-mnist/','*.png'
-    path_output = 'data/output/'
+def example_PCA_features():
+    #path_input = 'data/features_digits_mnist/'
+    path_input= 'data/features_ex_natural_images/'
 
-    #average_images_from_subfolders('data/output_gen_FC/','data/output/','*.jpg',resize_H=64,resize_W=64)
-    #plot_features_PCA(path_input_features)
-    #save_features_as_tensors(path_input_features,path_output)
-    plot_images_PCA(path_input_images,mask,resize_W=8,resize_H=8,grayscaled=True)
-
+    extractor_name = 'CNN_AlexNet_TF'
+    plot_features_PCA(path_input+extractor_name+'/',extractor_name)
     return
 # ----------------------------------------------------------------------------------------------------------------------
-def example_animation():
-    tools_animation.folder_to_animated_gif_imageio('data/output_gen_FC/','data/output3/'    ,mask='.jpg',framerate=1,resize_H=64,resize_W=64)
-    #tools_animation.folders_to_animated_gif('data/ex-natural/','data/output3/',mask='.jpg',framerate=3,resize_H=100,resize_W=100)
+def example_PCA_images():
 
+    path_input_images,mask = 'data/ex_digits_mnist/','*.png'
+    plot_images_PCA(path_input_images,mask,resize_W=8,resize_H=8,grayscaled=True,caption='ex_digits_mnist')
     return
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
-
-    example_natural()
-    #example_animation()
+    example_PCA_features()
+    #example_PCA_images()
