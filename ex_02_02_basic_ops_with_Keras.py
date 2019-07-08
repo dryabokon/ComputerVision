@@ -201,12 +201,12 @@ def example_deconv(filename_in,folder_out):
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
 
-    #example_convolution('data/ex22/image4.png', 'data/output/ex_convolution1.png')
+    example_convolution('data/ex22/image4.png', 'data/output/ex_convolution1.png')
     #example_maxpool    ('data/ex22/image2.png', 'data/output/ex_maxpool.png')
     #example_avgpool    ('data/ex22/image2.png', 'data/output/ex_avgpool.png')
     #example_flatten    ('data/ex22/image3.png', 'data/output/ex_flatten.png')
     #example_dense      ('data/ex22/image4.png', 'data/output/ex_dense.png')
 
-    example_deconv('data/ex22/image6.png', 'data/output/')
+    #example_deconv('data/ex22/image6.png', 'data/output/')
 
 
