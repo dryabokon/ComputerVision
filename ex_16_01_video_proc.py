@@ -39,12 +39,16 @@ def cap_05():
     return
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
-    cap_01()
-    cap_02()
-    cap_03()
-    cap_04()
-    cap_05()
+    #cap_01()
+    #cap_02()
+    #cap_03()
+    #cap_04()
+    #cap_05()
+
+    filename_in = 'D:/Projects/VFS/Cashiers 1_IP169_port/02.07.2019 14_59_59 (UTC+03_00).mkv'
+    folder_out = 'D:/Projects/VFS/output/'
 
 
-    #tools_animation.crop_images_in_folder(path_input,path_output,top, left, bottom, right)
-    #tools_animation.folder_to_animated_gif_imageio(path_input, filename_out, mask='*.jpg', framerate=40,resize_H=1200//4, resize_W=2154//4)
+    tools_video.extract_frames(filename_in,folder_out,prefix='')
+    #tools_animation.crop_images_in_folder(path_input,path_output,115, 123, 832, 1400)
+    #tools_animation.folder_to_animated_gif_imageio(path_input, path_input+'animation.gif', mask='*.jpg', framerate=40,resize_H=320, resize_W=570)
