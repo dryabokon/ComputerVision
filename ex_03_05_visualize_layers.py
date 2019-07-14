@@ -14,6 +14,7 @@ import tools_IO
 import tools_CNN_view
 import detector_YOLO3
 import detector_Zebra
+import CNN_App_Keras
 # ----------------------------------------------------------------------------------------------------------------------
 def visualize_layers_detector_Zebra():
 
@@ -33,7 +34,6 @@ def visualize_layers_detector_Zebra():
 
     return
 # ----------------------------------------------------------------------------------------------------------------------
-
 def visualize_layers_TF_Alexnet():
 
     filename_input = './data/ex_natural_images/dog/dog_0101.jpg'
@@ -43,7 +43,7 @@ def visualize_layers_TF_Alexnet():
         os.makedirs(path_output)
     else:tools_IO.remove_files(path_output)
 
-    CNN = CNN_AlexNet_TF.CNN_AlexNet_TF()
+    CNN = CNN_AlexNet_TF.CNN_AlexNet_TF('../bvlc_alexnet.npy')
     image = cv2.imread(filename_input)
     #image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
 
@@ -56,14 +56,14 @@ def visualize_layers_TF_Alexnet():
 # ----------------------------------------------------------------------------------------------------------------------
 def visualize_layers_detector_YOLO3():
 
-    filename_image = 'data/ex70/image.jpg'
+    filename_image = 'data/ex_natural_images/dog/dog_0101.jpg'
     path_out = 'data/output/'
 
     if not os.path.exists(path_out):
         os.makedirs(path_out)
     else:tools_IO.remove_files(path_out)
 
-    CNN = detector_YOLO3.detector_YOLO3('data/ex70/yolov3-tiny.h5')
+    CNN = detector_YOLO3.detector_YOLO3('../model_default.h5','../metadata_default.txt')
 
     tools_CNN_view.visualize_layers(CNN.model,filename_image, path_out)
 
@@ -72,7 +72,7 @@ def visualize_layers_detector_YOLO3():
 # ----------------------------------------------------------------------------------------------------------------------
 def visualize_layers_keras_VGG16():
 
-    filename_image = 'data/ex-natural/dog/dog_0000.jpg'
+    filename_image = 'data/ex_natural_images/dog/dog_0000.jpg'
     path_out = 'data/output/'
 
     if not os.path.exists(path_out):
@@ -85,40 +85,24 @@ def visualize_layers_keras_VGG16():
 
     return
 # ----------------------------------------------------------------------------------------------------------------------
-def visualize_layers_keras_Xception():
+def visualize_layers_keras_MobileNet():
 
-    filename_image = 'data/ex-natural/dog/dog_0000.jpg'
+    filename_image = 'data/ex_natural_images/dog/dog_0101.jpg'
     path_out = 'data/output/'
 
     if not os.path.exists(path_out):
         os.makedirs(path_out)
     else:tools_IO.remove_files(path_out)
 
-    CNN = Xception()
-    tools_CNN_view.visualize_filters(CNN, path_out)
-    tools_CNN_view.visualize_layers(CNN,filename_image, path_out)
+    CNN = CNN_App_Keras.CNN_App_Keras()
+    tools_CNN_view.visualize_filters(CNN.model, path_out)
+    tools_CNN_view.visualize_layers(CNN.model,filename_image, path_out)
 
-    return
-# ----------------------------------------------------------------------------------------------------------------------
-def visualize_layers_keras_MobileNet():
-    filename_image = 'data/ex-natural/dog/dog_0000.jpg'
-    path_out = 'data/output/'
-
-    if not os.path.exists(path_out):
-        os.makedirs(path_out)
-    else:
-        tools_IO.remove_files(path_out)
-
-    CNN = MobileNet()
-    tools_CNN_view.visualize_filters(CNN, path_out)
-    tools_CNN_view.visualize_layers(CNN, filename_image, path_out)
     return
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
 
-    visualize_layers_detector_Zebra()
+    #visualize_layers_detector_Zebra()
     #visualize_layers_TF_Alexnet()
-    #visualize_layers_keras_MobileNet()
-    #visualize_layers_keras_Xception()
+    visualize_layers_keras_MobileNet()
     #visualize_layers_detector_YOLO3()
-    #visualize_layers_detector_YOLO_simple()
