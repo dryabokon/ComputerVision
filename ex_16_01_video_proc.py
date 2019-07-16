@@ -45,10 +45,14 @@ if __name__ == '__main__':
     #cap_04()
     #cap_05()
 
-    filename_in = 'D:/Projects/VFS/Cashiers 1_IP169_port/02.07.2019 14_59_59 (UTC+03_00).mkv'
-    folder_out = 'D:/Projects/VFS/output/'
+    #filename_in = 'D:/Projects/VFS/Cashiers 1_IP169_port/02.07.2019 14_59_59 (UTC+03_00).mkv'
+    #folder_out = 'D:/Projects/VFS/output/'
 
+    path_input = 'D:/Projects/ResMEd/segm/'
+    path_output = 'D:/Projects/ResMEd/segm_cut/'
+    filename_out = path_output + 'out.gif'
 
-    tools_video.extract_frames(filename_in,folder_out,prefix='')
+    #tools_video.extract_frames(filename_in,folder_out,prefix='')
     #tools_animation.crop_images_in_folder(path_input,path_output,115, 123, 832, 1400)
-    #tools_animation.folder_to_animated_gif_imageio(path_input, path_input+'animation.gif', mask='*.jpg', framerate=40,resize_H=320, resize_W=570)
+    #tools_animation.folder_to_video(path_output,filename_out,mask='*.jpg',resize_W=1140,resize_H=640)
+    tools_animation.folder_to_animated_gif_imageio(path_output, filename_out, mask='*.jpg', framerate=20,resize_W=1140,resize_H=640)
