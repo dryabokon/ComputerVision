@@ -10,10 +10,10 @@ import tools_animation
 # ----------------------------------------------------------------------------------------------------------------------
 default_command     = 'E2E'
 model_in    = './data/ex_YOLO/models/model_default.h5'
-metadata_in = './data/ex_YOLO/models/metadata_default.txt'
 # ----------------------------------------------------------------------------------------------------------------------
 folder_annotation = './data/ex_detector/bottles1/'
 file_annotations  = './data/ex_detector/bottles1/markup.txt'
+metadata_in       = './data/ex_detector/bottles1/A_metadata.txt'
 # ----------------------------------------------------------------------------------------------------------------------
 folder_out  = './data/output/'
 # ----------------------------------------------------------------------------------------------------------------------
@@ -91,10 +91,13 @@ def main():
 
     return
 # ----------------------------------------------------------------------------------------------------------------------
-if __name__ == '__main__':
-
     #tools_YOLO.draw_annotation_boxes('./data/ex_detector/LON/markup.txt', './data/ex_detector/LON/classes.txt', './data/ex_YOLO/models/metadata_default.txt', default_folder_out,delim=' ')
     #tools_mAP.plot_mAP_iou('./data/ex_detector/LON/', './data/ex_detector/LON/markup_test_true.txt','./data/ex_detector/LON/markup_test_pred.txt', './data/ex_YOLO/models/metadata_default.txt', default_folder_out,out_prefix='')
     #tools_mAP.plot_mAP_overlap('./data/ex_detector/LON/', './data/ex_detector/LON/markup_test_true.txt','./data/ex_detector/LON/markup_test_pred.txt', './data/ex_YOLO/models/metadata_default.txt', default_folder_out,out_prefix='')
+# ----------------------------------------------------------------------------------------------------------------------
+if __name__ == '__main__':
 
-    E2E(model_in, metadata_in, folder_annotation, file_annotations, folder_out, limit=1000)
+
+    #E2E(model_in, metadata_in, folder_annotation, file_annotations, folder_out, limit=1000)
+    #tools_mAP.plot_mAP_iou('./data/ex_detector/bottles1/', './data/ex_detector/bottles1/markup_test_true.txt','./data/ex_detector/bottles1/markup_test_pred.txt', './data/ex_detector/bottles1/A_metadata.txt',folder_out, out_prefix='')
+    tools_mAP.draw_boxes(4, folder_annotation, folder_annotation+'markup_test_true.txt', folder_annotation+'markup_test_pred.txt',folder_out, delim=' ', metric='recall', iou_th=0.5, ovp_th=None, ovd_th=None)
