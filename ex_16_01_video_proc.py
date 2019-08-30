@@ -48,11 +48,11 @@ if __name__ == '__main__':
     #filename_in = 'D:/Projects/VFS/Cashiers 1_IP169_port/02.07.2019 14_59_59 (UTC+03_00).mkv'
     #folder_out = 'D:/Projects/VFS/output/'
 
-    path_input = 'D:/Projects/ResMEd/segm/'
-    path_output = 'D:/Projects/ResMEd/segm_cut/'
-    filename_out = path_output + 'out.gif'
 
-    #tools_video.extract_frames(filename_in,folder_out,prefix='')
+
+
+
+    tools_video.extract_frames('./data/sprint.mp4','./data/output/',prefix='')
     #tools_animation.crop_images_in_folder(path_input,path_output,115, 123, 832, 1400)
-    #tools_animation.folder_to_video(path_output,filename_out,mask='*.jpg',resize_W=1140,resize_H=640)
-    tools_animation.folder_to_animated_gif_imageio(path_output, filename_out, mask='*.jpg', framerate=20,resize_W=1140,resize_H=640)
+
+    #tools_animation.folder_to_animated_gif_imageio('D:/Projects/GL/Telecom/1/', 'D:/Projects/GL/Telecom/1/ani10.gif', mask='*.jpg', framerate=25,resize_W=640//2,resize_H=560//2)
