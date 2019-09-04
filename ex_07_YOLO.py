@@ -97,7 +97,4 @@ def main():
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
 
-
     E2E(model_in, metadata_in, folder_annotation, file_annotations, folder_out, limit=1000)
-    #tools_mAP.plot_mAP_iou('./data/ex_detector/bottles1/', './data/ex_detector/bottles1/markup_test_true.txt','./data/ex_detector/bottles1/markup_test_pred.txt', './data/ex_detector/bottles1/A_metadata.txt',folder_out, out_prefix='')
-    #tools_mAP.draw_boxes(4, folder_annotation, folder_annotation+'markup_test_true.txt', folder_annotation+'markup_test_pred.txt',folder_out, delim=' ', metric='recall', iou_th=0.5, ovp_th=None, ovd_th=None)
