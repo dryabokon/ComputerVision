@@ -1,4 +1,4 @@
-filename x_right y_top x_left y_bottom class_ID confidence
+filename x_left y_top x_right y_bottom class_ID confidence
 frame0179.jpg 486 276 657 680 2 0.99929976
 frame0323.jpg 486 257 635 629 0 0.053667627
 frame0323.jpg 843 291 1002 667 2 0.99988633
