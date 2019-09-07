@@ -1,0 +1,99 @@
+<model>
+  <input_image_size>(416, 416)</input_image_size>
+  <obj_threshold>0.10</obj_threshold>
+  <nms_threshold>0.3</nms_threshold>
+  <anchors>
+    <A0>(10.0, 14.0)</A0>
+    <A1>(23.0, 27.0)</A1>
+    <A2>(37.0, 58.0)</A2>
+    <A3>(81.0, 82.0)</A3>
+    <A4>(135.0, 169.0)</A4>
+    <A5>(344.0, 319.0)</A5>
+  </anchors>
+  <anchor_mask>
+    <M0>(3, 4, 5)</M0>
+    <M1>(1, 2, 3)</M1>
+  </anchor_mask>
+  <class_names>
+    <C0>person</C0>
+    <C1>bicycle</C1>
+    <C2>car</C2>
+    <C3>motorbike</C3>
+    <C4>aeroplane</C4>
+    <C5>bus</C5>
+    <C6>train</C6>
+    <C7>truck</C7>
+    <C8>boat</C8>
+    <C9>traffic light</C9>
+    <C10>fire hydrant</C10>
+    <C11>stop sign</C11>
+    <C12>parking meter</C12>
+    <C13>bench</C13>
+    <C14>bird</C14>
+    <C15>cat</C15>
+    <C16>dog</C16>
+    <C17>horse</C17>
+    <C18>sheep</C18>
+    <C19>cow</C19>
+    <C20>elephant</C20>
+    <C21>bear</C21>
+    <C22>zebra</C22>
+    <C23>giraffe</C23>
+    <C24>backpack</C24>
+    <C25>umbrella</C25>
+    <C26>handbag</C26>
+    <C27>tie</C27>
+    <C28>suitcase</C28>
+    <C29>frisbee</C29>
+    <C30>skis</C30>
+    <C31>snowboard</C31>
+    <C32>sports ball</C32>
+    <C33>kite</C33>
+    <C34>baseball bat</C34>
+    <C35>baseball glove</C35>
+    <C36>skateboard</C36>
+    <C37>surfboard</C37>
+    <C38>tennis racket</C38>
+    <C39>bottle</C39>
+    <C40>wine glass</C40>
+    <C41>cup</C41>
+    <C42>fork</C42>
+    <C43>knife</C43>
+    <C44>spoon</C44>
+    <C45>bowl</C45>
+    <C46>banana</C46>
+    <C47>apple</C47>
+    <C48>sandwich</C48>
+    <C49>orange</C49>
+    <C50>broccoli</C50>
+    <C51>carrot</C51>
+    <C52>hot dog</C52>
+    <C53>pizza</C53>
+    <C54>donut</C54>
+    <C55>cake</C55>
+    <C56>chair</C56>
+    <C57>sofa</C57>
+    <C58>pottedplant</C58>
+    <C59>bed</C59>
+    <C60>diningtable</C60>
+    <C61>toilet</C61>
+    <C62>tvmonitor</C62>
+    <C63>laptop</C63>
+    <C64>mouse</C64>
+    <C65>remote</C65>
+    <C66>keyboard</C66>
+    <C67>cell phone</C67>
+    <C68>microwave</C68>
+    <C69>oven</C69>
+    <C70>toaster</C70>
+    <C71>sink</C71>
+    <C72>refrigerator</C72>
+    <C73>book</C73>
+    <C74>clock</C74>
+    <C75>vase</C75>
+    <C76>scissors</C76>
+    <C77>teddy bear</C77>
+    <C78>hair drier</C78>
+    <C79>toothbrush</C79>
+  </class_names>
+</model>

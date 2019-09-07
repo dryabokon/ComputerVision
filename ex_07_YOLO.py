@@ -9,15 +9,16 @@ import tools_YOLO
 import tools_animation
 # ----------------------------------------------------------------------------------------------------------------------
 default_command     = 'E2E'
-model_in    = './data/ex_YOLO/models/model_default.h5'
+
 # ----------------------------------------------------------------------------------------------------------------------
 folder_annotation = './data/ex_detector/bottles1/'
 file_annotations  = './data/ex_detector/bottles1/markup.txt'
-metadata_in       = './data/ex_detector/bottles1/A_metadata.txt'
+model_in          = './data/ex_detector/bottles1/model_default.h5'
+metadata_in       = './data/ex_detector/bottles1/metadata_default.txt'
 # ----------------------------------------------------------------------------------------------------------------------
 folder_out  = './data/output/'
 # ----------------------------------------------------------------------------------------------------------------------
-def E2E(model_in,metadata_in,folder_annotation,file_annotations,full_folder_out,limit=1000):
+def E2E(model_in,metadata_in,folder_annotation,file_annotations,full_folder_out,limit=10):
 
     file_annotations_train = full_folder_out + 'markup_train_true.txt'
     file_annotations_test = full_folder_out + 'markup_test_true.txt'
@@ -97,4 +98,8 @@ def main():
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
 
-    E2E(model_in, metadata_in, folder_annotation, file_annotations, folder_out, limit=1000)
+
+
+    E2E(model_in, metadata_in, folder_annotation, file_annotations, folder_out, limit=20)
+    #tools_mAP.plot_mAP_iou('./data/ex_detector/bottles1/', './data/ex_detector/bottles1/markup_test_true.txt','./data/ex_detector/bottles1/markup_test_pred.txt', './data/ex_detector/bottles1/A_metadata.txt',folder_out, out_prefix='')
+    #tools_mAP.draw_boxes(4, folder_annotation, folder_annotation+'markup_test_true.txt', folder_annotation+'markup_test_pred.txt',folder_out, delim=' ', metric='recall', iou_th=0.5, ovp_th=None, ovd_th=None)
