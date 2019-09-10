@@ -2,12 +2,12 @@
 import time
 import detector_Mask_RCNN
 # ----------------------------------------------------------------------------------------------------------------------
-filename_weights = './data/ex80/mask_rcnn_coco.h5'
+filename_weights = './data/ex_Mask_RCNN/mask_rcnn_coco.h5'
 folder_out = './data/output/'
 # ----------------------------------------------------------------------------------------------------------------------
 def example_Mask_RCNN_on_file():
 
-    filename_image = './data/ex16g/LON/frame000300.jpg'
+    filename_image = './data/ex_detector/bike/Image.png'
     D = detector_Mask_RCNN.detector_Mask_RCNN(filename_weights, folder_out)
     D.process_file(filename_image, 'data/output/res_MASK_RCNN.jpg',draw_spline=True)
 

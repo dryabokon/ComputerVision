@@ -2,8 +2,8 @@
 import detector_YOLO3
 import detector_YOLO3_core
 # ----------------------------------------------------------------------------------------------------------------------
-model_in    = './data/ex_YOLO/model_default.h5'
-metadata_in = './data/ex_YOLO/metadata_default.txt'
+model_in    = './data/ex_YOLO/models/model_default.h5'
+metadata_in = './data/ex_YOLO/models/metadata_default.txt'
 # ----------------------------------------------------------------------------------------------------------------------
 def convert_to_Keras():
     D = detector_YOLO3.detector_YOLO3(None,None)
