@@ -21,15 +21,15 @@ def example_YOLO3_on_file():
 # ----------------------------------------------------------------------------------------------------------------------
 def example_YOLO3_on_folder():
 
-    folder_in   = './data/ex_detector/LON/'
+    folder_in   = './data/ex_detector/bike/'
     D = detector_YOLO3.detector_YOLO3(model_in, metadata_in, obj_threshold=0.50)
     D.process_folder(folder_in, './data/output/')
     return
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
 
-    example_YOLO3_on_file()
-    #example_YOLO3_on_folder()
+    #example_YOLO3_on_file()
+    example_YOLO3_on_folder()
 
 
 
