@@ -1,56 +1,39 @@
-import os
-from argparse import Namespace
+import argparse
 #----------------------------------------------------------------------------------------------------------------------
 from face_filter import Face_filter
 #----------------------------------------------------------------------------------------------------------------------
-log_dir         = './data/output/'
-sample_dir      = './data/output/'
-result_dir      = './data/output/'
+def main(command,filename_in,folder_in,filename_G_weights,filename_D_weights,folder_out,folder_train_images=None,file_train_attrib=None):
+
+    if command=='process_file':
+        P = Face_filter(folder_out, filename_G_weights, filename_D_weights)
+        P.process_file(filename_in,folder_out+'result.jpg')
+    if command == 'process_folder':
+        P = Face_filter(folder_out, filename_G_weights, filename_D_weights)
+        P.process_folder(folder_in,folder_out)
+
+    if command == 'train':
+        P = Face_filter(folder_out)
+        P.train(folder_train_images,file_train_attrib)
+    return
 #----------------------------------------------------------------------------------------------------------------------
-def get_config():
-    config = Namespace(c_dim=5, c2_dim=8)
-    config.model_save_dir = './data/ex_face_filter/stargan_celeba_128/models'
-    config.celeba_image_dir = './data/ex_face_filter/celeba/images'
-    config.attr_path = './data/ex_face_filter/celeba/list_attr_celeba.txt'
-    config.selected_attrs = ['Black_Hair', 'Blond_Hair', 'Brown_Hair', 'Male', 'Young']
-    config.image_size = 128
-    config.g_conv_dim = 64
-    config.d_conv_dim = 64
-    config.g_repeat_num = 6
-    config.d_repeat_num = 6
-    config.lambda_cls = float(1.0)
-    config.lambda_rec = float(10.0)
-    config.lambda_gp = float(10.0)
-    config.dataset = 'CelebA'
-    config.batch_size = 1
-    config.num_iters = 200000
-    config.num_iters_decay = 100000
-    config.g_lr = float(0.0001)
-    config.d_lr = float(0.0001)
-    config.n_critic = 5
-    config.beta1 = float(0.5)
-    config.beta2 = float(0.999)
-    config.resume_iters = None
-
-    config.test_iters = 200000
-    config.use_tensorboard = False
-    config.device = 'cpu'
-    config.log_dir = log_dir
-    config.sample_dir = sample_dir
-
-    config.result_dir = result_dir
-    config.log_step = 10
-    config.sample_step = 1000
-    config.model_save_step = 10000
-    config.lr_update_step = 1000
-    return config
-#----------------------------------------------------------------------------------------------------------------------
-
 if __name__ == '__main__':
 
-    config = get_config()
-    P = Face_filter(config)
-    #P.process_file('./data/ex_face_filter/celeba/images/000006.jpg','./data/output/res.jpg')
-    P.process_folder('./data/ex_face_filter/celeba/images/','./data/output/')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--command', default='train')
+    parser.add_argument('--filename_D_weights', default='./data/ex_face_filter/stargan_celeba_128/models/200000-D.ckpt')
+    parser.add_argument('--filename_G_weights', default='./data/ex_face_filter/stargan_celeba_128/models/200000-G.ckpt')
+    parser.add_argument('--filename_in', default='./data/ex_face_filter/celeba/000006.jpg')
+    parser.add_argument('--folder_in'  , default='./data/ex_face_filter/celeba/')
+    parser.add_argument('--folder_out' , default='./data/output/')
+    parser.add_argument('--folder_train_images', default='./data/ex_face_filter/celeba')
+    parser.add_argument('--file_train_attrib', default='./data/ex_face_filter/celeba/list_attr_celeba.txt')
+
+    args = parser.parse_args()
+
+    main(args.command, args.filename_in, args.folder_in,args.filename_G_weights,args.filename_D_weights,args.folder_out,args.folder_train_images,args.file_train_attrib)
+
+
+
+
 
 
