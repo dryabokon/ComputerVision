@@ -36,7 +36,7 @@ def visualize_layers_detector_Zebra():
 # ----------------------------------------------------------------------------------------------------------------------
 def visualize_layers_TF_Alexnet():
 
-    filename_input = './data/ex_natural_images/dog/dog_0101.jpg'
+    filename_input = './data/ex_natural_images/dog/dog_0100.jpg'
     path_output = './data/output/'
 
     if not os.path.exists(path_output):
@@ -56,14 +56,14 @@ def visualize_layers_TF_Alexnet():
 # ----------------------------------------------------------------------------------------------------------------------
 def visualize_layers_detector_YOLO3():
 
-    filename_image = 'data/ex_natural_images/flower/flower_0004.jpg'
+    filename_image = 'data/ex_detector/bike/Image.png'
     path_out = 'data/output/'
 
     if not os.path.exists(path_out):
         os.makedirs(path_out)
     else:tools_IO.remove_files(path_out)
 
-    CNN = detector_YOLO3.detector_YOLO3('./data/ex70/model_default.h5','./data/ex70/metadata_default.txt')
+    CNN = detector_YOLO3.detector_YOLO3('./data/ex_yolo/MODELS/model_default.h5','./data/ex_YOLO/models/metadata_default.txt')
 
     tools_CNN_view.visualize_layers(CNN.model,filename_image, path_out)
     #tools_CNN_view.visualize_filters(CNN.model,path_out)
@@ -104,6 +104,6 @@ def visualize_layers_keras_MobileNet():
 if __name__ == '__main__':
 
     #visualize_layers_detector_Zebra()
-    #visualize_layers_TF_Alexnet()
+    visualize_layers_TF_Alexnet()
     #visualize_layers_keras_MobileNet()
-    visualize_layers_detector_YOLO3()
+    #visualize_layers_detector_YOLO3()
