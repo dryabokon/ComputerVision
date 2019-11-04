@@ -1,7 +1,7 @@
 import cv2
 import numpy
 import tools_image
-import detector_landmarks
+
 # ---------------------------------------------------------------------------------------------------------------------
 filename_in  = 'data/ex13/input.jpg'
 filename_out = 'data/output/out.jpg'
@@ -12,7 +12,7 @@ USE_CAMERA = True
 # ---------------------------------------------------------------------------------------------------------------------
 def demo_cascade():
 
-    D = detector_landmarks.detector_landmarks('..//_weights//shape_predictor_68_face_landmarks.dat')
+
 
     if USE_CAMERA:
         cap = cv2.VideoCapture(0)
@@ -27,7 +27,6 @@ def demo_cascade():
         gray_rgb = tools_image.desaturate(frame)
         faces = faceCascade.detectMultiScale(frame,scaleFactor=1.1,minNeighbors=5,minSize=(30, 30))
 
-        gray_rgb = D.draw_landmarks(frame)
 
         for (x, y, w, h) in faces:
             cv2.rectangle(gray_rgb, (x, y), (x + w, y + h), (0, 255, 0), 2)

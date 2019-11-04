@@ -1,6 +1,8 @@
 import argparse
 #----------------------------------------------------------------------------------------------------------------------
 from face_filter import Face_filter
+import tools_image
+import cv2
 #----------------------------------------------------------------------------------------------------------------------
 def main(command,filename_in,folder_in,filename_G_weights,filename_D_weights,folder_out,folder_train_images=None,file_train_attrib=None):
 
@@ -28,9 +30,16 @@ if __name__ == '__main__':
     parser.add_argument('--folder_train_images', default='./data/ex_face_filter/celeba')
     parser.add_argument('--file_train_attrib', default='./data/ex_face_filter/celeba/list_attr_celeba.txt')
 
-    args = parser.parse_args()
+    #args = parser.parse_args()
 
-    main(args.command, args.filename_in, args.folder_in,args.filename_G_weights,args.filename_D_weights,args.folder_out,args.folder_train_images,args.file_train_attrib)
+    #main(args.command, args.filename_in, args.folder_in,args.filename_G_weights,args.filename_D_weights,args.folder_out,args.folder_train_images,args.file_train_attrib)
+
+
+
+    #img = cv2.imread('./data/ex_face_filter/celeba/000001.jpg')
+    img = cv2.imread('D://000267.jpg')
+    res = tools_image.center_crop(img,127)
+    cv2.imwrite('D://000267_res.jpg',res)
 
 
 

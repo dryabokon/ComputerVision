@@ -50,9 +50,8 @@ if __name__ == '__main__':
 
 
 
+    #tools_video.extract_frames('D:/dove.mp4','D:/2/',prefix='')
+    #tools_animation.crop_images_in_folder('D:/1/','D:/2/',0, 600, 700, 1250)
 
-
-    tools_video.extract_frames('./data/sprint.mp4','./data/output/',prefix='')
-    #tools_animation.crop_images_in_folder(path_input,path_output,115, 123, 832, 1400)
-
-    #tools_animation.folder_to_animated_gif_imageio('D:/Projects/GL/Telecom/1/', 'D:/Projects/GL/Telecom/1/ani10.gif', mask='*.jpg', framerate=25,resize_W=640//2,resize_H=560//2)
+    tools_animation.folder_to_animated_gif_imageio('D:/2/', 'D:/dove.gif', mask='*.jpg', framerate=30,resize_W=1920//8,resize_H=1080//8)
+    #tools_animation.folder_to_video('D:/Projects/Telefonica/flow3_croped/all/','D:/TF_ani4.mp4',mask='*.jpg',resize_W=2154//4,resize_H=1200//4)
