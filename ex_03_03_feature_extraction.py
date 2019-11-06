@@ -9,10 +9,10 @@ import classifier_FC_Keras
 # ----------------------------------------------------------------------------------------------------------------------
 def example_feature_extraction(path_input, path_output, mask):
 
-	#CNN = CNN_AlexNet_TF.CNN_AlexNet_TF()
+	CNN = CNN_AlexNet_TF.CNN_AlexNet_TF('../_weights/bvlc_alexnet.npy')
 	#CNN = CNN_Inception_TF.CNN_Inception_TF()
 	#CNN = CNN_App_Keras.CNN_App_Keras()
-	CNN = classifier_FC_Keras.classifier_FC_Keras()
+	#CNN = classifier_FC_Keras.classifier_FC_Keras()
 	#CNN = classifier_FC_Keras.classifier_FC_Keras(filename_weights=filename_model)
 
 	CNN.generate_features(path_input, path_output+CNN.name+'/',mask=mask)
@@ -22,10 +22,9 @@ def example_feature_extraction(path_input, path_output, mask):
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
 
-	#path_input  = 'data/ex_digits_mnist/'
-	#path_output = 'data/features_ex_digits_mnist/'
-	path_input  = 'data/ex_LPR/'
-	path_output = 'data/features_LPR/'
-	mask = '*.bmp'
+	path_input  = 'data/ex_digits_mnist/'
+	path_output = 'data/features_ex_digits_mnist/'
+
+	mask = '*.png'
 
 	example_feature_extraction(path_input,path_output,mask)
