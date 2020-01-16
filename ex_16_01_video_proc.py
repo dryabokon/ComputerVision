@@ -38,21 +38,26 @@ def cap_05():
     tools_video.extract_frames(filename_in, folder_out,prefix=prefix, start_time_sec= 60 * 24 + 10, end_time_sec= 60 * 24 + 25)
     return
 # ----------------------------------------------------------------------------------------------------------------------
+def cap_06():
+    URL = 'https://www.youtube.com/watch?v=ulpIL6KhD50'
+    out_path = 'D:/'
+    out_filename = 'res'
+    tools_video.grab_youtube_video(URL, out_path, out_filename)
+    return
+# ----------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
     #cap_01()
     #cap_02()
     #cap_03()
     #cap_04()
     #cap_05()
+    #cap_06()
 
     #filename_in = 'D:/Projects/VFS/Cashiers 1_IP169_port/02.07.2019 14_59_59 (UTC+03_00).mkv'
     #folder_out = 'D:/Projects/VFS/output/'
 
-
-
-
-
-    tools_video.extract_frames('./data/sprint.mp4','./data/output/',prefix='')
+    tools_video.extract_frames('D:/res.mp4','D:/3/',prefix='',start_time_sec=70)
     #tools_animation.crop_images_in_folder(path_input,path_output,115, 123, 832, 1400)
 
-    #tools_animation.folder_to_animated_gif_imageio('D:/Projects/GL/Telecom/1/', 'D:/Projects/GL/Telecom/1/ani10.gif', mask='*.jpg', framerate=25,resize_W=640//2,resize_H=560//2)
+    #tools_animation.folder_to_animated_gif_imageio('D:/1/', 'D:/ani.gif', mask='*.jpg', framerate=25,resize_W=210,resize_H=120)
+

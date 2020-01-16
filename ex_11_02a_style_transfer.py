@@ -10,10 +10,10 @@ from keras.preprocessing.image import load_img,  img_to_array
 from keras.applications import vgg19
 import cv2
 # ----------------------------------------------------------------------------------------------------------------------
-style_img_path    = '../_images/Ex32/original.png'
-style_mask_path   = '../_images/Ex32/original_mask.png'
-target_img_path   = '../_images/Ex32/target.png'
-target_mask_path  = '../_images/Ex32/target_mask.png'
+style_img_path    = '../_images/Ex32a/original.png'
+style_mask_path   = '../_images/Ex32a/original_mask.png'
+target_img_path   = '../_images/Ex32a/target.png'
+target_mask_path  = '../_images/Ex32a/target_mask.png'
 # ----------------------------------------------------------------------------------------------------------------------
 target_img_prefix = '../_images/output/xx'
 use_content_img = target_img_path is not None

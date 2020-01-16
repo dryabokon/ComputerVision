@@ -132,5 +132,5 @@ def example_PCA_images():
     return
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
-    example_PCA_features()
-    #example_PCA_images()
+    #example_PCA_features()
+    example_PCA_images()
