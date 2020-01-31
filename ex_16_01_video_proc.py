@@ -49,9 +49,13 @@ if __name__ == '__main__':
     #folder_out = 'D:/Projects/VFS/output/'
 
 
+    #tools_video.extract_frames('D:/Z.avi','D:/Z/',prefix='')
+    #tools_animation.crop_images_in_folder('D:/2/','D:/2c/',0, 800, 1080, 1920)
+    #tools_animation.merge_images_in_folders('D:/2/','D:/3/','D:/res/')
 
-    #tools_video.extract_frames('D:/dove.mp4','D:/2/',prefix='')
-    #tools_animation.crop_images_in_folder('D:/1/','D:/2/',0, 600, 700, 1250)
 
-    tools_animation.folder_to_animated_gif_imageio('D:/2/', 'D:/dove.gif', mask='*.jpg', framerate=30,resize_W=1920//8,resize_H=1080//8)
+
+    #tools_animation.folder_to_animated_gif_imageio('D:/Z/', 'D:/DF.gif', mask='*.jpg', framerate=20,resize_W=1000//4,resize_H=1000//4)
     #tools_animation.folder_to_video('D:/Projects/Telefonica/flow3_croped/all/','D:/TF_ani4.mp4',mask='*.jpg',resize_W=2154//4,resize_H=1200//4)
+
+    tools_video.grab_youtube_video('https://www.youtube.com/watch?v=FdF_bNq3Pvk','D://C//', 'xxx.mp4')
