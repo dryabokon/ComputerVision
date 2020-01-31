@@ -38,24 +38,32 @@ def cap_05():
     tools_video.extract_frames(filename_in, folder_out,prefix=prefix, start_time_sec= 60 * 24 + 10, end_time_sec= 60 * 24 + 25)
     return
 # ----------------------------------------------------------------------------------------------------------------------
+def cap_06():
+    URL = 'https://www.youtube.com/watch?v=ulpIL6KhD50'
+    out_path = 'D:/'
+    out_filename = 'res'
+    tools_video.grab_youtube_video(URL, out_path, out_filename)
+    return
+# ----------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
     #cap_01()
     #cap_02()
     #cap_03()
     #cap_04()
     #cap_05()
+    #cap_06()
 
     #filename_in = 'D:/Projects/VFS/Cashiers 1_IP169_port/02.07.2019 14_59_59 (UTC+03_00).mkv'
     #folder_out = 'D:/Projects/VFS/output/'
+
 
 
     #tools_video.extract_frames('D:/Z.avi','D:/Z/',prefix='')
     #tools_animation.crop_images_in_folder('D:/2/','D:/2c/',0, 800, 1080, 1920)
     #tools_animation.merge_images_in_folders('D:/2/','D:/3/','D:/res/')
 
-
-
     #tools_animation.folder_to_animated_gif_imageio('D:/Z/', 'D:/DF.gif', mask='*.jpg', framerate=20,resize_W=1000//4,resize_H=1000//4)
     #tools_animation.folder_to_video('D:/Projects/Telefonica/flow3_croped/all/','D:/TF_ani4.mp4',mask='*.jpg',resize_W=2154//4,resize_H=1200//4)
 
-    tools_video.grab_youtube_video('https://www.youtube.com/watch?v=FdF_bNq3Pvk','D://C//', 'xxx.mp4')
+
+    tools_video.extract_frames('D:/res.mp4','D:/3/',prefix='',start_time_sec=70)
