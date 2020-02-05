@@ -29,7 +29,10 @@ def example_YOLO3_on_folder():
 if __name__ == '__main__':
 
     #example_YOLO3_on_file()
-    example_YOLO3_on_folder()
+    #example_YOLO3_on_folder()
+
+    D = detector_YOLO3.detector_YOLO3(model_in, metadata_in, obj_threshold=0.50)
+    D.process_folder('D:/N/','D:/N_res/')
 
 
 

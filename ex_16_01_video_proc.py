@@ -62,8 +62,8 @@ if __name__ == '__main__':
     #tools_animation.crop_images_in_folder('D:/2/','D:/2c/',0, 800, 1080, 1920)
     #tools_animation.merge_images_in_folders('D:/2/','D:/3/','D:/res/')
 
-    #tools_animation.folder_to_animated_gif_imageio('D:/Z/', 'D:/DF.gif', mask='*.jpg', framerate=20,resize_W=1000//4,resize_H=1000//4)
+    tools_animation.folder_to_animated_gif_imageio('D:/JB/', 'D:/JB.gif', mask='*.jpg', framerate=25,resize_W=1120//4,resize_H=540//4)
     #tools_animation.folder_to_video('D:/Projects/Telefonica/flow3_croped/all/','D:/TF_ani4.mp4',mask='*.jpg',resize_W=2154//4,resize_H=1200//4)
 
 
-    tools_video.extract_frames('D:/res.mp4','D:/3/',prefix='',start_time_sec=70)
+    #tools_video.extract_frames('D:/res_merged_v01.mp4','D:/JB/',prefix='')

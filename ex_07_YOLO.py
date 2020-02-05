@@ -5,6 +5,7 @@ import argparse
 import detector_YOLO3
 import tools_mAP
 import tools_IO
+import tools_video
 import tools_YOLO
 import tools_animation
 # ----------------------------------------------------------------------------------------------------------------------
@@ -46,7 +47,7 @@ def E2E(model_in,metadata_in,folder_annotation,file_annotations,full_folder_out,
 
     return
 # ----------------------------------------------------------------------------------------------------------------------
-def process_folder(model_in,metadata_in,folder_in,folder_out,limit):
+def process_folder(model_in,metadata_in,folder_in,folder_out,limit=10000):
     D = detector_YOLO3.detector_YOLO3(model_in, metadata_in, obj_threshold=0.1)
     D.process_folder(folder_in, folder_out,limit=limit)
     return
@@ -100,6 +101,11 @@ if __name__ == '__main__':
 
 
 
-    E2E(model_in, metadata_in, folder_annotation, file_annotations, folder_out, limit=20)
+    #E2E(model_in, metadata_in, folder_annotation, file_annotations, folder_out, limit=20)
     #tools_mAP.plot_mAP_iou('./data/ex_detector/bottles1/', './data/ex_detector/bottles1/markup_test_true.txt','./data/ex_detector/bottles1/markup_test_pred.txt', './data/ex_detector/bottles1/A_metadata.txt',folder_out, out_prefix='')
     #tools_mAP.draw_boxes(4, folder_annotation, folder_annotation+'markup_test_true.txt', folder_annotation+'markup_test_pred.txt',folder_out, delim=' ', metric='recall', iou_th=0.5, ovp_th=None, ovd_th=None)
+    folder_in = './data/ex_detector/bike/'
+
+    #tools_video.grab_youtube_video('https://www.youtube.com/watch?v=6GWHmPGaHFA','D:/','neg')
+    #tools_video.extract_frames('D:/neg0.mp4', 'D:/N/')
+    process_folder(model_in,metadata_in,'D:/P/','D:/P_res_full/')

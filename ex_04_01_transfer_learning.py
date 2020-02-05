@@ -11,12 +11,13 @@ import classifier_Bayes2
 import classifier_LM
 import classifier_KNN
 import classifier_FC_Keras
+import face_descriptor
 # ----------------------------------------------------------------------------------------------------------------------
 import tools_ML
 # ----------------------------------------------------------------------------------------------------------------------
 def example_train_test_on_features():
-	path_input = 'data/features-natural/FC/'
-	path_output = 'data/features-natural/'
+	path_input = './data/features_ex_digits_mnist/facenet/'
+	path_output = './data/output/'
 
 	C0 = classifier_Ada.classifier_Ada()
 	C1 = classifier_XGBoost.classifier_XGBoost()
@@ -34,7 +35,8 @@ def example_train_test_on_features():
 	C11 = classifier_FC_Keras.classifier_FC_Keras()
 
 
-	P = tools_ML.tools_ML(C11)
+
+	P = tools_ML.tools_ML(C3)
 	P.E2E_features(path_input, path_output,  limit_classes=40, limit_instances=2000)
 
 
