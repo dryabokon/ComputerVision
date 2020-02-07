@@ -11,7 +11,6 @@ import classifier_Bayes2
 import classifier_LM
 import classifier_KNN
 import classifier_FC_Keras
-import face_descriptor
 # ----------------------------------------------------------------------------------------------------------------------
 import tools_ML
 # ----------------------------------------------------------------------------------------------------------------------
