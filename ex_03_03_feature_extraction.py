@@ -22,8 +22,8 @@ def example_feature_extraction(path_input, path_output, mask):
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
 
-	path_input  = 'data/ex_digits_mnist/'
-	path_output = 'data/features_ex_digits_mnist/'
+	path_input  = 'data/ex_natural_images/'
+	path_output = 'data/features_ex_natural_images/'
 
 	mask = '*.png'
 
