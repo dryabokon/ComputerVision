@@ -17,12 +17,12 @@ class_names = tools_CNN_view.class_names
 # ----------------------------------------------------------------------------------------------------------------------
 def example_predict():
 
-    #CNN = MobileNet()
-    CNN = Xception()
+    CNN = MobileNet()
+    #CNN = Xception()
 
-    img = cv2.imread('./data/ex_natural_images/dog/dog_0000.jpg')
+    img = cv2.imread('./data/ex_natural_images/dog/dog_0011.jpg')
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    img = cv2.resize(img, (299, 299)).astype(numpy.float32)
+    img = cv2.resize(img, (224, 224)).astype(numpy.float32)
 
     prob = CNN.predict(preprocess_input(numpy.array([img])))
     idx = numpy.argsort(-prob[0])[0]

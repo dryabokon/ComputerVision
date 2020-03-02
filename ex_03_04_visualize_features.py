@@ -118,11 +118,12 @@ def average_images_from_subfolders(path_input,path_output,mask,resize_W=8, resiz
     return
 # ----------------------------------------------------------------------------------------------------------------------
 def example_PCA_features():
-    #path_input = 'data/features_digits_mnist/'
-    #extractor_name = 'CNN_AlexNet_TF'
+    path_input = 'data/features_ex_digits_mnist/'
+    extractor_name = 'CNN_AlexNet_TF'
 
-    path_input = 'data/features_sound/'
-    extractor_name = 'spectr'
+    #path_input = 'data/features_sound/'
+    #extractor_name = 'spectr'
+
     plot_features_PCA(path_input+extractor_name+'/',extractor_name)
     return
 # ----------------------------------------------------------------------------------------------------------------------
@@ -133,5 +134,5 @@ def example_PCA_images():
     return
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
-    #example_PCA_features()
-    example_PCA_images()
+    example_PCA_features()
+    #example_PCA_images()

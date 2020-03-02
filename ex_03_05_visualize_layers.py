@@ -43,7 +43,7 @@ def visualize_layers_TF_Alexnet():
         os.makedirs(path_output)
     else:tools_IO.remove_files(path_output)
 
-    CNN = CNN_AlexNet_TF.CNN_AlexNet_TF('../bvlc_alexnet.npy')
+    CNN = CNN_AlexNet_TF.CNN_AlexNet_TF('../_weights/bvlc_alexnet.npy')
     image = cv2.imread(filename_input)
     #image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
 
