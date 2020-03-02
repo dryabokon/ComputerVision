@@ -57,6 +57,9 @@ if __name__ == '__main__':
     #folder_out = 'D:/Projects/VFS/output/'
 
 
+    #tools_video.extract_frames('D:/res.mp4','D:/3/',prefix='',start_time_sec=70)
+    #tools_animation.crop_images_in_folder(path_input,path_output,115, 123, 832, 1400)
+    #tools_animation.folder_to_animated_gif_imageio('D:/1/', 'D:/ani.gif', mask='*.jpg', framerate=25,resize_W=210,resize_H=120)
 
     #tools_video.extract_frames('D:/Z.avi','D:/Z/',prefix='')
     #tools_animation.crop_images_in_folder('D:/2/','D:/2c/',0, 800, 1080, 1920)
@@ -66,6 +69,13 @@ if __name__ == '__main__':
     #tools_animation.folder_to_video('D:/Projects/Telefonica/flow3_croped/all/','D:/TF_ani4.mp4',mask='*.jpg',resize_W=2154//4,resize_H=1200//4)
 
 
+<<<<<<< HEAD
     #tools_video.extract_frames('D:/res_merged_v01.mp4','D:/JB/',prefix='')
 
     tools_animation.folder_to_video('D:/Projects/Telefonica/flow3_croped/all/', 'D:/TF_ani4.mp4', mask='*.jpg',resize_W=2154 // 4, resize_H=1200 // 4)
+=======
+    tools_video.grab_youtube_video('https://www.youtube.com/watch?v=CAUUi8zEZBk','D:/','bbc.avi')
+
+
+
+>>>>>>> 871a9343f4348494f6c8c73d657ed1b9e20c77b6

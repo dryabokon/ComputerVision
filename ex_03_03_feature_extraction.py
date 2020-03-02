@@ -24,9 +24,9 @@ def example_feature_extraction(path_input, path_output, mask):
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
 
+
 	path_input  = 'data/ex_faces/'
 	path_output = 'data/features_faces/'
-
 	mask = '*.png,*.jpg'
 
 	example_feature_extraction(path_input,path_output,mask)
