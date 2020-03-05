@@ -1,3 +1,4 @@
+import math
 import cv2
 import numpy
 from skimage.morphology import skeletonize
@@ -20,7 +21,7 @@ filename_in = './data/ex_lines/Image1.jpg'
 #filename_in = './data/ex_lines/H.png'
 folder_out = './data/output/'
 # ----------------------------------------------------------------------------------------------------------------------
-def detect_01(filename_in,folder_out,blur_kernel=5):
+def skeletonize_fast(filename_in, folder_out, blur_kernel=5):
     img = cv2.imread(filename_in)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     blur = tools_filter.sliding_2d(gray,blur_kernel,blur_kernel,stat='avg',mode='reflect').astype(numpy.uint8)
@@ -49,7 +50,7 @@ def detect_01(filename_in,folder_out,blur_kernel=5):
     cv2.imwrite(folder_out + '5-res_bin.png', res_bin)
     return
 # ----------------------------------------------------------------------------------------------------------------------
-def detect_02(filename_in,folder_out):
+def get_lines(filename_in, folder_out):
     img = cv2.imread(filename_in)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     edges = cv2.Canny(gray, 50, 150, apertureSize=3)
@@ -75,7 +76,7 @@ def detect_02(filename_in,folder_out):
     cv2.imwrite(folder_out + 'res02.png', result)
     return
 # ----------------------------------------------------------------------------------------------------------------------
-def detect_03(filename_in,folder_out):
+def skeletonize_slow(filename_in, folder_out):
 
     img = cv2.imread(filename_in)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -84,6 +85,7 @@ def detect_03(filename_in,folder_out):
     ske = skeletonize(threshholded>0).astype(numpy.uint16)
     result  = img.copy()
     result = tools_image.desaturate(result)
+    res_bin = numpy.zeros(img.shape, dtype=numpy.uint8)
 
     graph = sknw.build_sknw(ske)
 
@@ -94,11 +96,41 @@ def detect_03(filename_in,folder_out):
         if len(xx)>20 and line_length(xx[0],yy[0],xx[-1],yy[-1]) > 50:
             for i in range(len(xx)-1):
                 result = cv2.line(result, (xx[i],yy[i]), (xx[i+1],yy[i+1]), (0, 32, 255),thickness=4)
-                #result = cv2.circle(result, (int(ps[:, 1][i]), int(ps[:, 0][i])), 3, (255, 128, 0), -1)
+                res_bin = cv2.line(res_bin, (xx[i], yy[i]), (xx[i + 1], yy[i + 1]), (255, 255, 255), thickness=4)
 
 
     cv2.imwrite(folder_out + '4-res.png', result)
+    cv2.imwrite(folder_out + '5-res_bin.png', res_bin)
     plt.show()
+    return
+# ----------------------------------------------------------------------------------------------------------------------
+def lines_to_chart(filename_in,folder_out):
+
+    img = cv2.imread(filename_in)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    edges = cv2.Canny(gray, 50, 150, apertureSize=3)
+
+    lines = cv2.HoughLines(edges, 1, numpy.pi / 180, min_line_len)
+
+    image_map = numpy.zeros((img.shape[0]*2,180))
+
+    for line in lines:
+        for rho, theta in line:
+            a = numpy.cos(theta)
+            b = numpy.sin(theta)
+            x0 = a * rho
+            y0 = b * rho
+            x1 = int(x0 - 100 * b)
+            y1 = int(y0 + 100 * a)
+            x2 = int(x0 + 100 * b)
+            y2 = int(y0 - 100 * a)
+
+            angle = 90+math.atan((x2-x1)/(y2-y1))*180/math.pi
+            image_map [int(y0),int(angle)]=255
+            print(y0, angle)
+
+
+    cv2.imwrite(folder_out + 'map.png',image_map)
     return
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
@@ -106,5 +138,6 @@ if __name__ == '__main__':
     #detect_01(filename_in, folder_out,blur_kernel=4)
     #detect_01(folder_out + 'input.png', folder_out,blur_kernel=4)
     #detect_02(folder_out + '5-res_bin.png', folder_out)
-    detect_03(filename_in,folder_out)
+    #skeletonize_slow(filename_in,folder_out)
+    lines_to_chart(folder_out + '5-res_bin.png',folder_out)
 
