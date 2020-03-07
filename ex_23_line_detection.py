@@ -1,6 +1,7 @@
 import numpy
 import cv2
 import tools_soccer_field
+import tools_IO
 from PIL import Image, ImageDraw, ImageOps
 #----------------------------------------------------------------------------------------------------------------------
 filename_in = './data/ex_lines/frame000269.jpg'
@@ -15,6 +16,8 @@ def example_01(filename_in):
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
 
-    example_01(filename_in)
+    #example_01(filename_in)
+    lines = tools_IO.load_mat( './data/ex_lines/ske.txt')
+    SFP.dr
 
 
