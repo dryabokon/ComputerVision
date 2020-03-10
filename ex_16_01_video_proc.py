@@ -23,8 +23,9 @@ if __name__ == '__main__':
 
 
 
+    tools_video.extract_frames('D:/soccer_dataset.mp4','D:/soccer/',prefix='')
+
     #tools_animation.folder_to_video('D:/Projects/Telefonica/flow3_croped/all/', 'D:/TF_ani4.mp4', mask='*.jpg',resize_W=2154 // 4, resize_H=1200 // 4)
     #tools_video.grab_youtube_video('https://www.youtube.com/watch?v=CAUUi8zEZBk','D:/','bbc.avi')
 
 
-    tools_video.extract_frames('D:/output_sign_gates.avi','D:/F/',prefix='')
