@@ -13,26 +13,7 @@ import CNN_AlexNet_TF
 import tools_IO
 import tools_CNN_view
 import detector_YOLO3
-import detector_Zebra
 import CNN_App_Keras
-# ----------------------------------------------------------------------------------------------------------------------
-def visualize_layers_detector_Zebra():
-
-    filename_input = './data/ex_LPR/CZE_20150501071848723_VD.jpg'
-    path_out = './data/output/'
-
-    #if not os.path.exists(path_out):
-    #    os.makedirs(path_out)
-    #else:tools_IO.remove_files(path_out)
-
-    filename_weights = './data/output/A_model.h5'
-    CNN = detector_Zebra.detector_Zebra(filename_weights)
-
-    tools_CNN_view.visualize_layers(CNN.model,filename_input, path_out)
-    tools_CNN_view.visualize_filters(CNN.model,path_out)
-
-
-    return
 # ----------------------------------------------------------------------------------------------------------------------
 def visualize_layers_TF_Alexnet():
 
@@ -103,7 +84,6 @@ def visualize_layers_keras_MobileNet():
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
 
-    #visualize_layers_detector_Zebra()
     visualize_layers_TF_Alexnet()
     #visualize_layers_keras_MobileNet()
     #visualize_layers_detector_YOLO3()
