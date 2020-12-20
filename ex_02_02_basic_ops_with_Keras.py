@@ -5,6 +5,7 @@ from keras.layers.core import Flatten, Dense, Dropout,Activation
 from keras import backend as K
 import numpy
 import cv2
+import tools_image
 K.set_image_dim_ordering('tf')  #(224,224,3)
 # ----------------------------------------------------------------------------------------------------------------------
 import tools_CNN_view
@@ -13,7 +14,8 @@ def do_convulution(image):
 
     model = Sequential()
     model.add(Conv2D(filters=16,kernel_size=(2,2),strides=(1, 1), padding='valid',input_shape=image.shape))
-    model.layers[0].set_weights(tools_CNN_view.construct_filters_2x2())
+    weights16 = tools_CNN_view.construct_filters_2x2()
+    model.layers[0].set_weights(weights16)
     output = Model(inputs=model.input, outputs=model.output).predict(numpy.array([image]))[0]
     return output #(N,N,64)
 # ----------------------------------------------------------------------------------------------------------------------
@@ -199,16 +201,51 @@ def example_deconv(filename_in,folder_out):
 
     return
 # ----------------------------------------------------------------------------------------------------------------------
-if __name__ == '__main__':
-
-    filename_image = './data/ex_natural_images/dog/dog_0011.jpg'
-
-    #example_convolution(filename_image, 'data/output/ex_convolution1.png')
+def ex_conv_cnn():
     #example_maxpool    ('data/ex22/image2.png', 'data/output/ex_maxpool.png')
     #example_avgpool    ('data/ex22/image2.png', 'data/output/ex_avgpool.png')
     #example_flatten    ('data/ex22/image3.png', 'data/output/ex_flatten.png')
     #example_dense      ('data/ex22/image4.png', 'data/output/ex_dense.png')
 
-    example_deconv(filename_image, 'data/output/')
+    #example_deconv(filename_image, 'data/output/')
+    return
+# ----------------------------------------------------------------------------------------------------------------------
+filename_in = './data/ex_convolution/2-gray_bin.png'
+# ----------------------------------------------------------------------------------------------------------------------
+W = 16
+H = 6
+kernel = numpy.full((W, W), 0,dtype=numpy.float32)
+kernel[W // 2 - H // 4:W // 2 + H // 4, :W] = +1
+# ----------------------------------------------------------------------------------------------------------------------
+def custom_activation(x):
+    return (K.sigmoid(x) * 5) - 1
+# ----------------------------------------------------------------------------------------------------------------------
+def ex2():
+    #cv2.imwrite('./data/output/K.png', 255 * kernel)
+    image = tools_CNN_view.normalize(cv2.imread(filename_in).astype(numpy.float32))
+    image[image<0]=0
+
+    #image = tools_CNN_view.normalize(cv2.resize(cv2.imread(filename_in), (100, 100)).astype(numpy.float32))
+
+    model = Sequential()
+    model.add(Conv2D(filters=1, kernel_size=(W, W), strides=(1, 1), padding='same', dilation_rate=1,input_shape=image.shape))
 
 
+    kernel4 = numpy.array([[kernel,kernel,kernel]]).reshape((W,W,3,1))
+    weights = [kernel4/(3*kernel.sum()), numpy.array([0])]
+
+    model.layers[0].set_weights(weights)
+
+
+    tensor_out = Model(inputs=model.input, outputs=model.output).predict(numpy.array([image]))[0]
+
+    m = tensor_out.max()
+    #tensor_out = tools_CNN_view.scale(tensor_out)
+    image_out = tools_CNN_view.tensor_gray_3D_to_image(255*tensor_out, do_colorize=False)
+    cv2.imwrite('./data/output/ex_convolution1.png', image_out)
+
+# ----------------------------------------------------------------------------------------------------------------------
+if __name__ == '__main__':
+
+    #example_convolution('./data/ex_convolution/2-gray_bin.png', './data/output/ex_convolution1.png')
+    ex2()

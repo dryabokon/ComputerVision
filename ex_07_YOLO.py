@@ -108,4 +108,4 @@ if __name__ == '__main__':
 
     #tools_video.grab_youtube_video('https://www.youtube.com/watch?v=6GWHmPGaHFA','D:/','neg')
     #tools_video.extract_frames('D:/neg0.mp4', 'D:/N/')
-    process_folder(model_in,metadata_in,'D:/P/','D:/P_res_full/')
+    process_folder(model_in,metadata_in,'D:/LM/ex02/','D:/LM/output/')
