@@ -1,3 +1,4 @@
+import numpy
 import cv2
 import tensorflow as tf
 from tensorflow.python.keras.utils import conv_utils
@@ -820,7 +821,7 @@ def create_mask(pred_mask):
   pred_mask = tf.argmax(pred_mask, axis=-1)
   pred_mask = pred_mask[..., tf.newaxis]
 
-  return pred_mask[0]
+  return numpy.array(pred_mask[0])
 # ----------------------------------------------------------------------------------------------------------------------
 def xxx():
     # image
