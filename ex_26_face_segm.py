@@ -821,7 +821,7 @@ def create_mask(pred_mask):
   pred_mask = tf.argmax(pred_mask, axis=-1)
   pred_mask = pred_mask[..., tf.newaxis]
 
-  return numpy.array(pred_mask[0])
+  return numpy.array(255*pred_mask[0])
 # ----------------------------------------------------------------------------------------------------------------------
 def xxx():
     # image
@@ -858,10 +858,10 @@ if __name__ == '__main__':
     img = tf.image.resize(img, (512, 512))
     img = tf.reshape(img, [1, 512, 512, 3])
 
-    print('image load OK')
+
 
     img_enc_probs, img_dec_probs = Enet(img[0:1, :, :, :])
     img_dec_out = create_mask(img_dec_probs)
-    print('create_mask OK')
+
     cv2.imwrite('./data/output/segm.png',img_dec_out)
 
