@@ -1,6 +1,6 @@
+import cv2
 import tensorflow as tf
 from tensorflow.python.keras.utils import conv_utils
-import numpy as np
 import matplotlib.pylab as plt
 # ----------------------------------------------------------------------------------------------------------------------
 class MaxPoolWithArgmax2D(tf.keras.layers.Layer):
@@ -822,22 +822,7 @@ def create_mask(pred_mask):
 
   return pred_mask[0]
 # ----------------------------------------------------------------------------------------------------------------------
-if __name__ == '__main__':
-    Enet = EnetModel(C=3, MultiObjective=True, l2=1e-3)
-    Enet.load_weights('./data/ex_enet/Enet512x512.tf')
-    img = tf.io.read_file('./data/ex_face_filter/celeba/000001.jpg')
-    img = tf.image.decode_jpeg(img, channels=3)
-    img = tf.image.convert_image_dtype(img, tf.float32)
-    img = tf.image.resize(img, (512, 512))
-    img = tf.reshape(img, [1, 512, 512, 3])
-
-    print('image load OK')
-
-    img_enc_probs, img_dec_probs = Enet(img[0:1, :, :, :])
-    img_dec_out = create_mask(img_dec_probs)
-
-    print('create_mask OK')
-
+def xxx():
     # image
     fig = plt.figure(figsize=(20, 10))
     plt.subplot(1, 3, 1)
@@ -861,3 +846,21 @@ if __name__ == '__main__':
     plt.tight_layout()
     fig.subplots_adjust(wspace=0.0, hspace=0.0)
     plt.show()
+    return
+# ----------------------------------------------------------------------------------------------------------------------
+if __name__ == '__main__':
+    Enet = EnetModel(C=3, MultiObjective=True, l2=1e-3)
+    Enet.load_weights('./data/ex_enet/Enet512x512.tf')
+    img = tf.io.read_file('./data/ex_face_filter/celeba/000001.jpg')
+    img = tf.image.decode_jpeg(img, channels=3)
+    img = tf.image.convert_image_dtype(img, tf.float32)
+    img = tf.image.resize(img, (512, 512))
+    img = tf.reshape(img, [1, 512, 512, 3])
+
+    print('image load OK')
+
+    img_enc_probs, img_dec_probs = Enet(img[0:1, :, :, :])
+    img_dec_out = create_mask(img_dec_probs)
+    print('create_mask OK')
+    cv2.imwrite('./data/output/segm.png',img_dec_out)
+
